@@ -9,3 +9,22 @@
   width: 26%;
   background-color: rgb(79, 154, 158);
 }
+.search-container {
+  display: flex;
+  margin: 40px;
+  justify-content: center;
+}
+input.search-input-field {
+  width: 27%;
+  height: 30px;
+  border: none;
+  font-size: 20px;
+  background-color: rgb(79, 154, 158);
+}
+input.search-input-field:focus {
+  border: none;
+  outline: none;
+}
+::placeholder{
+  color: black;
+}
