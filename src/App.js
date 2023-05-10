@@ -46,9 +46,23 @@ class App extends Component {
         },
       ],
     };
+    console.log('constructor');
+  }
+
+  componentDidMount(){
+    console.log('component did mount'); 
+  }
+
+  componentDidUpdate(){
+    console.log('component did update');
+  }
+
+  componentWillUnmount(){
+    console.log('component will unmount');
   }
 
   render() {
+    console.log('render');
     const { name, age, tvs } = this.state;
     const changeNameHandler = () => {
       this.setState({ name: "React" });
