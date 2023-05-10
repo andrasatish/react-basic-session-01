@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "./App.css";
+import './App.css';
 
 class App extends Component {
   constructor() {
@@ -18,11 +18,17 @@ class App extends Component {
   }
 
   render() {
-    
+    const { users } = this.state;
     return (
-      <div>
+      <div className="users-container">
         {
-         console.log(this.state.users) 
+          users.map((user)=>(
+            <div key={user.id} className="user-container">
+              <h2>{user.name}</h2>
+              <p>{user.email}</p>
+              <p>{user.address.city}</p>
+            </div>
+          ))
         }
       </div>
     );
