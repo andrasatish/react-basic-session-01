@@ -63,14 +63,14 @@ class App extends Component {
         <hr />
         <div className="cards-user">
           <h1>TV Brands</h1>
-          {tvs.map((tv, index) => {
-            return (
+          {tvs.map((tv, index) => (
               <div key={tv.id}>
                 <p>{tv.brand}</p>
                 <p>{tv.price}</p>
               </div>
-            );
-          })}
+            )
+          )}
+          <p>Newly Added</p>
         </div>
       </div>
     );
