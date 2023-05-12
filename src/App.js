@@ -1,11 +1,14 @@
-import { Component } from "react";
+import { Component, Fragment } from "react";
 import "./App.css";
+import Users from "./components/users/users.component";
+import SearchInput from "./components/search-input/searchInput.component";
 
 class App extends Component {
   constructor() {
     super();
     this.state = {
       users: [],
+      searchText:''
     };
   }
 
@@ -16,24 +19,20 @@ class App extends Component {
         this.setState({ users });
       });
   }
+  
+  searchHandler = (event)=>{
+    const searchText = event.target.value.toLowerCase();
+    this.setState({searchText});
+  }
 
   render() {
-    const { users } = this.state;
+    const { users, searchText } = this.state;
+    const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchText));
     return (
-      <div>
-        <div className="search-container">
-          <input className="search-input-field" placeholder="username" />
-        </div>
-        <div className="users-container">
-          {users.map((user) => (
-            <div key={user.id} className="user-container">
-              <h2>{user.name}</h2>
-              <p>{user.email}</p>
-              <p>{user.address.city}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <Fragment>
+         <SearchInput inputSearchHandler = {this.searchHandler} />
+         <Users listUsers = {filteredUsers} searchKey='test'/>
+      </Fragment>
     );
   }
 }
