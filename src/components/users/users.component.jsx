@@ -1,11 +1,10 @@
-import { Component, Fragment } from "react";
+import { Fragment } from "react";
 import User from "../user/user.component";
 
-class Users extends Component {
-  render() {
-    const { listUsers } = this.props;
-    return (
-      <Fragment>
+function Users(props){
+  const { listUsers } = props;
+  return (
+    <Fragment>
         <div className="users-container">
           {listUsers.length ? (
             listUsers.map((user) => <User user={user} key={user.id} />)
@@ -23,8 +22,7 @@ class Users extends Component {
           )}
         </div>
       </Fragment>
-    );
-  }
+  )
 }
 
 export default Users;

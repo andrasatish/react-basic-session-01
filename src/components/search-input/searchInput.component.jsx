@@ -1,8 +1,7 @@
-import { Component, Fragment } from "react";
+import { Fragment } from "react";
 
-class SearchInput extends Component {
-  render() {
-    const { inputSearchHandler } = this.props;
+function SearchInput(props) {
+    const { inputSearchHandler } = props;
     return (
       <Fragment>
         <div className="search-container">
@@ -14,7 +13,6 @@ class SearchInput extends Component {
         </div>
       </Fragment>
     );
-  }
 }
 
 export default SearchInput;

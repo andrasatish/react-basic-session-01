@@ -1,40 +1,35 @@
-import { Component, Fragment } from "react";
+import { Component, Fragment, useEffect, useState } from "react";
 import "./App.css";
 import Users from "./components/users/users.component";
 import SearchInput from "./components/search-input/searchInput.component";
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      users: [],
-      searchText:''
-    };
-  }
+function App() {
+  const [users, setUsers] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
-  componentDidMount() {
+  useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => {
-        this.setState({ users });
+        setUsers(users);
       });
-  }
+  },[]);
   
-  searchHandler = (event)=>{
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchText)
+  );
+
+  const searchHandler = (event)=>{
     const searchText = event.target.value.toLowerCase();
-    this.setState({searchText});
+    setSearchText(searchText);
   }
 
-  render() {
-    const { users, searchText } = this.state;
-    const filteredUsers = users.filter(user => user.name.toLowerCase().includes(searchText));
-    return (
-      <Fragment>
-         <SearchInput inputSearchHandler = {this.searchHandler} />
-         <Users listUsers = {filteredUsers} searchKey='test'/>
-      </Fragment>
-    );
-  }
+  return (
+    <Fragment>
+      <SearchInput inputSearchHandler = {searchHandler} />
+      <Users listUsers = {filteredUsers} searchKey='test'/>
+    </Fragment>
+  );
 }
 
 export default App;
